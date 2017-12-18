@@ -1,0 +1,24 @@
+WAP in assembly language for 8051 to arrange elements in ascending / descending order. 
+
+      	MOV R0,#20H	//	Initialize counter 1
+START:	MOV DPTR,#3000H	//	Initialize memory pointer 
+	      MOV R1,#20H	//	Initialize counter 2
+BACK:	MOV R2,DPL	//	Save the address of lower byte
+	    MOVX A,@DPTR	//	Get the number in accumulator
+	    MOV R3,A	//	Store the number in R3
+	    INC DPTR	//	Increment memory pointer 
+	    MOVX A, @DPTR	//	Get the next number in accumulator
+    	MOV B,A	//	
+	    MOV A,R3	//	
+	    CJNE A,B, NEQ	//	Compare number with next number 
+	    AJMP SKIP	//	If less, don’t interchange 
+NEQ:	JC SKIP	//	If equal , don’t interchange
+	    MOV DPL,R2	//	
+	    MOV A,B	//	
+	    MOVX @DPTR,A	//	Otherwise swap the contents 
+	    INC DPTR	//	Increment pointer to next memory location
+	    MOV A,R3	//	
+	    MOVX @DPTR,A	//	
+SKIP:	DJNZ R1,BACK	//	If R1 ≠ 0 then goto BACK
+	    DJNZ R0,START	//	If R0 ≠ 0 then goto START
+	    7END	//	
