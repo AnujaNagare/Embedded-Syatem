@@ -1,0 +1,16 @@
+To find smallest elements from a block of data.			
+			
+  	MOV R0, #03H	//	Load R0 with length of array = 03H
+  	MOV DPTR ,#3000H	//	Load DPTR with the address of data 
+    MOVX A, @DPTR	//	Load accumulator with data
+L1:	MOV B, A	//	Store the number in register B
+L3:	DJNZ R0, L2	//	Decrement counter 
+	  SJMP STP	//	Stop if counter = 0
+L2:	INC DPTR	//	Increment data pointer to point next memory location
+	  MOVX A,@DPTR	//	Load accumulator with data
+	  CJNE A, B, NEQ	//	Find the minimum number
+	  SJMP L3	//	If A = B, continue
+NEQ :	JNC L3	//	If A> B, continue 
+	    SJMP L1	//	If A < B, exchange the contents. 
+STP:	MOV R1, B	//	Store the smallest number in register R1
+	    End	//	End program
