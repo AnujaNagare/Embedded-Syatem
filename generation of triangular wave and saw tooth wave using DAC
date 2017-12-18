@@ -1,0 +1,30 @@
+WAP for generation of triangular wave and saw tooth wave using DAC.
+
+Generation Of Triangular Wave
+ORG 0
+CLR A		
+
+UP:	INC A
+  	MOV P2,A
+	  CJNE A,#0FFH,UP
+
+DOWN: 	DEC A
+		    MOV P2,A
+		    CJNE A,#00,DOWN
+
+    		CLR TF0
+    		SJMP UP
+END	
+
+
+Generation Of Saw Tooth Wave
+ORG 0
+CLR A
+		
+L1:	INC A
+	  MOV P2,A
+	  CJNE A,#0FFH,L1
+	  CLR TF0
+	  SJMP L1
+
+END	
