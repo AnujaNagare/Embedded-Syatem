@@ -1,0 +1,17 @@
+WAP in assembly language for 8051 for generation of square wave on any pin of port.
+
+org 0000H		
+LJMP START		
+org 001BH	//	ISR for timer 1
+CLR TF1	//	Clear timer 1 overflow
+CPL P1.5	//	Toggle P1.5 pin
+RETI		
+org 1000H		
+START : SETB P1.5	//	Set P1.5 pin to logic ‘1’
+MOV IE, #88H	//	Enable timer 1 and global interrupts
+MOV TMOD, #20H	//	Timer 1 programmed as timer and in mode 2
+MOV TH1,#0D2H	//	Load the reload register as D2H
+MOV TL1,#0D2H	//	Load the counter register as D2H
+SETB TR1	//	Set Timer 1 in Run mode
+here: SJMP here	//	Do nothing loop. Wait for interrupt
+END		
