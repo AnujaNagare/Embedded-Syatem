@@ -1,0 +1,27 @@
+TO MOVE BLOCK OF ELEMENTS
+
+From internal RAM to internal RAM:
+  MOV R0, #40H	//Load #40H in register R0	
+  MOV A, @R0	  //Transfer data at R0 to register A	
+  MOV R1,A	    //Load the  register A  data in register R1	
+  END	          //End program 	
+
+From external RAM to internal RAM		
+  MOV R1, #40H	//	Load #40H in register R1
+  MOV DPTR, #3000H	//	Load #3000H in DPTR
+  MOVX A, @DPTR	//	Transfer data at DPTR to register A 
+  MOV @R1,A	//	Load the  data of register A  at the location mentioned in register R1
+  END	//	End program 
+		
+From internal RAM to external RAM		
+  MOV R1, #40H	//	Load #40H in register R1
+  MOV DPTR, #3000H	//	Load #3000H in DPTR 
+  MOV A, @R1	//	Transfer data at R1 to register A 
+  MOVX @DPTR,A	//	Load the  data at register A  at the location mentioned in register DPTR
+  END	//	End program 
+		
+TO EXCHANGE (SWAP) BLOCK OF ELEMENTS		
+  MOV A, #01H	//	Load #01H in A
+  MOV B, #03H	//	Load #03H in B
+  XCH A, B	//	Swap data of A & B
+  END	//	End program 
