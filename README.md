@@ -1,2 +1,2 @@
-# Embedded-Syatem-
-Assembly Language
+# Embedded-Syatem
+Basic Assembly Language Programs
