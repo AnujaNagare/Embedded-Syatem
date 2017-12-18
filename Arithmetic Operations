@@ -1,0 +1,27 @@
+WAP in assembly language for 8051 to perform arithmetic operations such as
+
+a.	Addition
+  MOV A, #06H  //Load the 1st no. in register A                     A = 06H
+  MOV B, #04H  //Load the 2nd no. in register B                     B = 04H
+  ADD A, B     // Compute addition. Result is stored in accumulator A = 0AH (Result)
+  END          //End program 	                                      End 
+
+b.	Subtraction
+  MOV A, #0AH  //A = 0AH
+  MOV B, #04H  //B = 04H
+  SUBB A, B    //Compute subtraction. Result is stored in accumulator  A = 06H (Result)
+  END          //End
+
+c.	Multiplication
+  MOV A, #02H  //A = 02H
+  MOV B, #04H  //B = 04H
+  MUL AB       //Compute multiplication. A = 08H (Result)
+  END          //End
+
+d.	Division
+  MOV A, #08H  //A = 08H
+  MOV B, #04H  //B = 04H
+  DIV AB       //Compute division. A = 02H (Result)
+  END          //end
+
+
